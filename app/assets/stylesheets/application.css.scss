@@ -17,14 +17,24 @@
  body {
   padding-top: 50px;
 }
+
 .starter-template {
-  background: url('wiki-background1.jpg') no-repeat center center fixed;
+  background-image: url('https://dl.dropboxusercontent.com/s/35jbnxjfoyrb941/wiki-background2.jpg?');
+  background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  height: 670px;
-  padding: 30px 15px;
+  background-position: center;
   text-align: center;
+  height: 615px;
+  padding: 25px 15px;
+
+   h1 {
+      text-transform: uppercase;
+      color: #000000;
+      font-size: 55px;
+      font-weight: 200;
+    }
 }
 
 #logo {
