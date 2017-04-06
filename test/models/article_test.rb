@@ -3,11 +3,17 @@ require 'test_helper'
 class ArticleTest < ActiveSupport::TestCase
 
   def setup
-    @article = Article.new(title: "Ruby on Rails", description: "How to get started")
+    @user = User.create!(name: "neil", email: "neil@example.com")
+    @article = @user.articles.build(title: "Ruby on Rails", description: "How to get started")
   end
 
   test "article should be valid" do
     assert @article.valid?
+  end
+
+  test "article without user should be invalid" do
+    @article.user_id = nil
+    assert_not @article.valid?
   end
 
   test "title should be present" do
