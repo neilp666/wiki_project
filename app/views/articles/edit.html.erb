@@ -2,45 +2,5 @@
 wrapper_padding">
   <h1 id="page_title">Edit An Exisiting Article</h1>
 
-  <% if @article.errors.any? %>
-    <div class="row">
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <h2 class="panel-title">
-            <%= pluralize(@article.errors.count, "error") %> Prevented this Article from saving:
-          </h2>
-        <div class="panel-body">
-         <ul>
-           <% @article.errors.full_messages.each do |msg| %>
-             <li><%= msg %></li>
-           <% end %>
-         </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-    <%= form_for @article do |f| %>
-
-    <b><%= f.label :title %></b><br>
-    <%= f.text_field :title, rows:1, class: "form-control", placeholder: "Enter Title of article" %>
-
-    <br>
-    <br>
-
-    <b><%= f.label :description, "Write your article here" %></b><br>
-    <%= f.text_area :description, rows:10, class: "form-control", placeholder: "Enter Article Description" %>
-
-    <br>
-    <br>
-
-    <%= f.submit class: "btn btn-primary btn-lg btn-block" %>
-
-  <% end %>
-  <div class="col-md-4 col-md-offset-4">
-    <%= link_to "Cancel and return to articles listing", articles_path %>
- </div>
-</div>
-
+  <%= render 'form' %>
 

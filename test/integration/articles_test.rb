@@ -21,13 +21,14 @@ class ArticlesTest < ActionDispatch::IntegrationTest
   end
 
   test "should get articles show" do
-    get article_path(@article)
+    get articles_path(@article)
     assert_template 'articles/show'
     assert_match @article.title, response.body
     assert_match @article.description, response.body
     assert_match @user.name, response.body
     assert_select 'a[href=?]', edit_article_path(@article), text: "Edit Article"
     assert_select 'a[href=?]', article_path(@article), text: "Delete Article"
+    assert_select 'a[href=?]', articles_path, text: "Return to articles listing"
   end
 
   test "create new valid article submission" do
