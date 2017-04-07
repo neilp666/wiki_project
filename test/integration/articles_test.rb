@@ -26,6 +26,8 @@ class ArticlesTest < ActionDispatch::IntegrationTest
     assert_match @article.title, response.body
     assert_match @article.description, response.body
     assert_match @user.name, response.body
+    assert_select 'a[href=?]', edit_article_path(@article), text: "Edit Article"
+    assert_select 'a[href=?]', article_path(@article), text: "Delete Article"
   end
 
   test "create new valid article submission" do
@@ -33,12 +35,13 @@ class ArticlesTest < ActionDispatch::IntegrationTest
     assert_template 'articles/new'
     title_of_article = "Installing Rails"
     description_of_article = "Go to the rails guide website "
-    assert_no_difference 'Article.count', 1 do
-      post articles_path, params: {article { title: title_of_article, description: description_of_article }}
+    assert_difference 'Article.count', 1 do
+      post articles_path, params: { article: { title: title_of_article, description: description_of_article } }
     end
+
     follow_redirect!
-    assert_match: title_of_article.capitalize, response.body
-    assert_match: description_of_article, response.body
+    assert_match title_of_article.capitalize, response.body
+    assert_match description_of_article, response.body
   end
 
   test "reject invalid article submissions" do
