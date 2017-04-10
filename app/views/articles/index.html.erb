@@ -15,7 +15,7 @@
       <% @articles.each do |article| %>
         <tr>
           <td><%= link_to article.title, article_path(article) %></td>
-          <td><%= truncate(article.description, length: 100) %></td>
+          <td><%= truncate(article.description.html_safe, length: 100) %></td>
           <td><%= article.user.name %></td>
           <td><%= time_ago_in_words(article.created_at) %></td>
         </tr>

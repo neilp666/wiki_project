@@ -1,0 +1,13 @@
+<div id="article_show_content" class="skinny_wrapper
+wrapper_padding">
+
+<% if @programming_topic.articles.count ! = 0 %>
+  <header>
+    <p class="date">Article's containing <%= @programming_topic.topic %>'s articles</p>
+  </header>
+<% else %>
+<p align="center">No Topics yet!</p>
+<% end %>
+
+
+

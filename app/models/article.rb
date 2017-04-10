@@ -4,4 +4,6 @@ class Article < ApplicationRecord
 
   belongs_to :user
   validates :user_id, presence: true
+  has_many :articlesprogramming_topics
+  has_many :programming_topics, through: :articlesProgramming_topics
 end

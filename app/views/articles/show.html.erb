@@ -9,7 +9,8 @@ wrapper_padding">
   </header>
 
   <div id="description">
-    <%=  simple_format(@article.description) %>
+    
+     <%= sanitize @article.description, tags: %w(strong em p br div ul ol li) %>﻿
   </div>
 
   <hr>

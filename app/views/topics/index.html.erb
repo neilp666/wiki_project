@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 id="page_title">All Topics</h1>
+     <table class="table">
+      <thead>
+        <tr>
+          <th>Topic</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      <% @topics.each do |programming_topic| %>
+        <tr>
+          <td><%= programming_topic.topic %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
