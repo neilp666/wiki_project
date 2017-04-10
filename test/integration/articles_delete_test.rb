@@ -2,11 +2,13 @@ require 'test_helper'
 
 class ArticlesDeleteTest < ActionDispatch::IntegrationTest
   def setup
-    @user = User.create!(name: "Neil", email: "neil@example.com")
+    @user = User.create!(name: "Neil", email: "neil@example.com",
+                        password: "password", password_confirmation: "password")
     @article = Article.create(title: "Ruby", description: "Getting started with Ruby", user: @user)
   end
 
   test 'Delete a successful article' do
+    sign_in_as(@user, 'password')
     get article_path(@article)
     assert_template 'articles/show'
     assert_select 'a[href=?]', article_path(@article), text: "Delete Article"

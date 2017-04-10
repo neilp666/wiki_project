@@ -3,7 +3,8 @@ require 'test_helper'
 class ArticleTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.create!(name: "neil", email: "neil@example.com")
+    @user = User.create!(name: "neil", email: "neil@example.com",
+                  password: "password", password_confirmation: "password")
     @article = @user.articles.build(title: "Ruby on Rails", description: "How to get started")
   end
 

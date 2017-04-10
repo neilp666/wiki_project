@@ -3,11 +3,13 @@ require 'test_helper'
 class ArticlesEditTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = User.create!(name: "Neil", email: "neil@example.com")
+    @user = User.create!(name: "Neil", email: "neil@example.com",
+                        password: "password", password_confirmation: "password")
     @article = Article.create(title: "Ruby on Rails", description: "This is a guide to ruby on rails", user: @user)
   end
 
   test "invalid article update" do
+    sign_in_as(@user, "password")
     get edit_article_path(@article)
     assert_template "articles/edit"
     patch article_path(@article), params: { article: { title: " " , description: "some description"} }
@@ -16,6 +18,7 @@ class ArticlesEditTest < ActionDispatch::IntegrationTest
   end
 
   test "successfully edit a article" do
+    sign_in_as(@user, 'password')
     get edit_article_path(@article)
     assert_template 'articles/edit'
     updated_title = "updated title name"

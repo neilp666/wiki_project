@@ -1,0 +1,22 @@
+<div id="article_show_content" class="skinny_wrapper
+wrapper_padding">
+  <h1 id="page_title">Log in</h1>
+
+  <%= form_for :session, url: login_path do |f| %>
+
+    <b><%= f.label :email, "Email" %></b><br>
+    <%= f.email_field :email, class: "form-control", placeholder: "Enter Your Email" %>
+
+    <br>
+
+     <b><%= f.label :password, "Password" %></b><br>
+    <%= f.password_field :password, class: "form-control", placeholder: "Enter your password" %>
+
+    <br>
+
+    <%= f.submit "Log in", class: 'btn btn-primary btn-lg' %>
+    <br>
+  
+    <%= link_to "Don't have an account? Sign up now!", articles_path %>
+
+  <% end %>

@@ -3,7 +3,8 @@ require 'test_helper'
 class ArticlesTest < ActionDispatch::IntegrationTest
 
   def setup
-    @user = User.create!(name: "Neil", email: "neil@example.com")
+    @user = User.create!(name: "Neil", email: "neil@example.com",
+                      password: "password", password_confirmation: "password")
     @article = Article.create(title: "Ruby on Rails", description: "Get started with Ruby on Rails", user: @user)
     @article2 = Article.create(title: "Javascript", description: "Get started with Javascript", user: @user)
   end
@@ -21,7 +22,8 @@ class ArticlesTest < ActionDispatch::IntegrationTest
   end
 
   test "should get articles show" do
-    get articles_path(@article)
+    sign_in_as(@user, 'password')
+    get article_path(@article)
     assert_template 'articles/show'
     assert_match @article.title, response.body
     assert_match @article.description, response.body
@@ -32,6 +34,7 @@ class ArticlesTest < ActionDispatch::IntegrationTest
   end
 
   test "create new valid article submission" do
+    sign_in_as(@user, "password")
     get new_article_path
     assert_template 'articles/new'
     title_of_article = "Installing Rails"
@@ -46,6 +49,7 @@ class ArticlesTest < ActionDispatch::IntegrationTest
   end
 
   test "reject invalid article submissions" do
+    sign_in_as(@user, 'password')
     get new_article_path
     assert_template 'articles/new'
     assert_no_difference 'Article.count' do

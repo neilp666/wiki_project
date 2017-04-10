@@ -16,8 +16,12 @@ wrapper_padding">
   <p class="date">Created by: <%= @article.user.name %></p>
 
   <div id="admin_links">
+    <% if logged_in? && current_user == @article.user %>
     <%= link_to "Edit Article", edit_article_path(@article), class: "btn btn-primary" %>
     <%= link_to "Delete Article", article_path(@article), method: :delete, data: { confirm: 'Are you sure you want to delete this article?' }, class: "btn btn-danger" %>
+
+    <% end %>
+
     <%= link_to "Return to articles listing", articles_path, class: "btn btn-success" %>
     </div>
   </div>
